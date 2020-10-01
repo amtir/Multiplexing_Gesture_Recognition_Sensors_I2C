@@ -4,6 +4,11 @@ import time
 import smbus
 import sys
 
+
+
+#-------------------------------------------------------------------------------------------
+# Gesture recognition Sensor I2C PAJ7620U2
+#---------------------------------
 #i2c address
 PAJ7620U2_I2C_ADDRESS   = 0x73
 #Register Bank select
@@ -170,32 +175,11 @@ Init_Gesture_Array = (
 )
 
 
-I2C_address = 0x70
-I2C_bus_number = 1
-I2C_ch_0 = 0b00000001
-I2C_ch_1 = 0b00000010
-I2C_ch_2 = 0b00000100
-I2C_ch_3 = 0b00001000
-I2C_ch_4 = 0b00010000
-I2C_ch_5 = 0b00100000
-I2C_ch_6 = 0b01000000
-I2C_ch_7 = 0b10000000
-
-def I2C_setup(i2c_channel_setup):
-    
-    bus = smbus.SMBus(I2C_bus_number)
-    bus.write_byte(I2C_address,i2c_channel_setup)
-    #time.sleep(0.1)
-    #print ("TCA9548A I2C channel status: {}".format( bin(bus.read_byte(I2C_address))))
-    
-
 
 class PAJ7620U2(object):
 	def __init__(self,address=PAJ7620U2_I2C_ADDRESS):
 		self._address = address
 		self._bus  = smbus.SMBus(I2C_bus_number)
-		time.sleep(0.1)
-		
 		time.sleep(1.5)
 		if self._read_byte(0x00) == 0x20:
 			print("\nGesture Sensor OK\n")
@@ -222,150 +206,30 @@ class PAJ7620U2(object):
 		OBJ_SIZE		=	self._read_u16(PAJ_OBJ_SIZE_L)
 		#print(' Object brightness = %.f , Object size = %.f'%(OBJ_BRIGHTNESS,OBJ_SIZE))
 		return [OBJ_BRIGHTNESS,OBJ_SIZE]
-
-if __name__ == '__main__':
-	
-	
-	TimeInit = 0.1
-	TimePeriod = 0.01
-	
-	print("-------------------------------\nInitialisation I2C channels ...\n--------------------------------")
-	
-	time.sleep(0.5)
-	
-	try:
-		
-		
-		I2C_setup(int(I2C_ch_0))
-		time.sleep(TimeInit)	
-		paj7620u1=PAJ7620U2()
-		t = paj7620u1.check_gesture()
-		print("I2C channel1: {}".format(t))
-	except Exception as e:
-		print(" -> [-]Error initialisation channel1 I2C: {}".format(e))
-		sys.exit()
-	print(" -> [+] Channel1 I2C initialsed.")
-	
-	try:
-		I2C_setup(int(I2C_ch_1))
-		time.sleep(TimeInit)	
-		paj7620u2=PAJ7620U2()
-		t = paj7620u2.check_gesture()
-		print("I2C channel2: {}".format(t))
-	except Exception as e:
-		print(" -> [-] Error initialisation channel2 I2C: {}".format(e))
-		sys.exit()
-	print(" -> [+] Channel2 I2C initialsed.")
-	
-	try:
-		I2C_setup(int(I2C_ch_2))
-		time.sleep(TimeInit)	
-		paj7620u3=PAJ7620U2()
-		t = paj7620u3.check_gesture()
-		print("I2C channel3: {}".format(t))
-	except Exception as e:
-		print(" -> [-] Error initialisation channel3 I2C: {}".format(e))
-		sys.exit()
-	print(" -> [+] Channel3 I2C initialsed.")
-	
-	try:
-		I2C_setup(int(I2C_ch_3))
-		time.sleep(TimeInit)	
-		paj7620u4=PAJ7620U2()
-		t = paj7620u4.check_gesture()
-		print("I2C channel4: {}".format(t))
-	except Exception as e:
-		print(" -> [-] Error initialisation channel4 I2C: {}".format(e))
-		sys.exit()
-	print(" -> [+] Channel4 I2C initialsed.")
-	
-	try:
-		I2C_setup(int(I2C_ch_4))
-		time.sleep(TimeInit)	
-		paj7620u5=PAJ7620U2()
-		t = paj7620u5.check_gesture()
-		print("I2C channel5: {}".format(t))
-	except Exception as e:
-		print(" -> [-] Error initialisation channel5 I2C: {}".format(e))
-		sys.exit()
-	print(" -> [+] Channel5 I2C initialsed.")
-	
-	try:
-		I2C_setup(int(I2C_ch_5))
-		time.sleep(TimeInit)	
-		paj7620u6=PAJ7620U2()
-		t = paj7620u6.check_gesture()
-		print("I2C channel6: {}".format(t))
-	except Exception as e:
-		print(" -> [-] Error initialisation channel6 I2C: {}".format(e))
-		sys.exit()
-	print(" -> [+] Channel6 I2C initialsed.")
-	
-	try:
-		I2C_setup(int(I2C_ch_6))
-		time.sleep(TimeInit)	
-		paj7620u7=PAJ7620U2()
-		t = paj7620u7.check_gesture()
-		print("I2C channel7: {}".format(t))
-	except Exception as e:
-		print(" -> [-] Error initialisation channel7 I2C: {}".format(e))
-		sys.exit()
-	print(" -> [+] Channel7 I2C initialsed.")
-	
-	try:
-		I2C_setup(int(I2C_ch_7))
-		time.sleep(TimeInit)	
-		paj7620u8=PAJ7620U2()
-		t = paj7620u8.check_gesture()
-		print("I2C channel8: {}".format(t))
-	except Exception as e:
-		print(" -> [-] Error initialisation channel8 I2C: {}".format(e))
-		sys.exit()
-	print(" -> [+] Channel8 I2C initialsed.")
-	
-	
-	print("\nEnd of the I2C channels initialisation.")
-	print("-----------------------------------------")
-	
-	time.sleep(TimeInit)
-	
-
-		
-	print("\nSensor size and brightness ...\n")
-		
-		
-	while True:
-		I2C_setup(int(I2C_ch_0))
-		obj1 = paj7620u1.check_gesture()
-		time.sleep(TimePeriod)
-		I2C_setup(int(I2C_ch_1))
-		obj2 = paj7620u1.check_gesture()
-		time.sleep(TimePeriod)
-		I2C_setup(int(I2C_ch_2))
-		obj3 = paj7620u1.check_gesture()
-		time.sleep(TimePeriod)
-		I2C_setup(int(I2C_ch_3))
-		obj4= paj7620u1.check_gesture()
-		time.sleep(TimePeriod)
-		I2C_setup(int(I2C_ch_4))
-		obj5= paj7620u1.check_gesture()
-		time.sleep(TimePeriod)
-		I2C_setup(int(I2C_ch_5))
-		obj6= paj7620u1.check_gesture()
-		time.sleep(TimePeriod)
-		I2C_setup(int(I2C_ch_6))
-		obj7= paj7620u1.check_gesture()
-		time.sleep(TimePeriod)
-		I2C_setup(int(I2C_ch_7))
-		obj8= paj7620u1.check_gesture()
-		time.sleep(TimePeriod)
-		print("Sensor1: {:10} - Sensor2: {:10} - Sensor3: {:10} - Sensor4: {:10} - Sensor5: {:10} - Sensor6: {:10} - Sensor7: {:10} - Sensor8: {:10}".format(str(obj1), str(obj2), str(obj3), str(obj4), str(obj5), str(obj6), str(obj7), str(obj8)))
-		time.sleep(TimePeriod)
+#------------------------------------------------------------------------------------------
 
 
+#-------------------------------------------------------------------------------------------
+# Multiplexer I2C TCA9548A
+#---------------------------------
+I2C_address = 0x70
+I2C_bus_number = 1
+I2C_ch_0 = 0b00000001
+I2C_ch_1 = 0b00000010
+I2C_ch_2 = 0b00000100
+I2C_ch_3 = 0b00001000
+I2C_ch_4 = 0b00010000
+I2C_ch_5 = 0b00100000
+I2C_ch_6 = 0b01000000
+I2C_ch_7 = 0b10000000
 
-
-
-
+def I2C_setup(i2c_channel_setup):
+    
+    bus = smbus.SMBus(I2C_bus_number)
+    bus.write_byte(I2C_address,i2c_channel_setup)
+    #time.sleep(0.1)
+    #print ("TCA9548A I2C channel status: {}".format( bin(bus.read_byte(I2C_address))))
+    
+#------------------------------------------------------------------------------------------
 
 
