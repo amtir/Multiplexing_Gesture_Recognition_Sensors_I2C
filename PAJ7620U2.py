@@ -231,12 +231,14 @@ if __name__ == '__main__':
 	
 	print("-------------------------------\nInitialisation I2C channels ...\n--------------------------------")
 	
-	paj7620u1=PAJ7620U2()
-	time.sleep(0.1)
+	time.sleep(0.5)
 	
 	try:
+		
+		
 		I2C_setup(int(I2C_ch_0))
-		time.sleep(TimeInit)
+		time.sleep(TimeInit)	
+		paj7620u1=PAJ7620U2()
 		t = paj7620u1.check_gesture()
 		print("I2C channel1: {}".format(t))
 	except Exception as e:
@@ -246,8 +248,9 @@ if __name__ == '__main__':
 	
 	try:
 		I2C_setup(int(I2C_ch_1))
-		time.sleep(TimeInit)
-		t = paj7620u1.check_gesture()
+		time.sleep(TimeInit)	
+		paj7620u2=PAJ7620U2()
+		t = paj7620u2.check_gesture()
 		print("I2C channel2: {}".format(t))
 	except Exception as e:
 		print(" -> [-] Error initialisation channel2 I2C: {}".format(e))
@@ -256,8 +259,9 @@ if __name__ == '__main__':
 	
 	try:
 		I2C_setup(int(I2C_ch_2))
-		time.sleep(TimeInit)
-		t = paj7620u1.check_gesture()
+		time.sleep(TimeInit)	
+		paj7620u3=PAJ7620U2()
+		t = paj7620u3.check_gesture()
 		print("I2C channel3: {}".format(t))
 	except Exception as e:
 		print(" -> [-] Error initialisation channel3 I2C: {}".format(e))
@@ -266,8 +270,9 @@ if __name__ == '__main__':
 	
 	try:
 		I2C_setup(int(I2C_ch_3))
-		time.sleep(TimeInit)
-		t = paj7620u1.check_gesture()
+		time.sleep(TimeInit)	
+		paj7620u4=PAJ7620U2()
+		t = paj7620u4.check_gesture()
 		print("I2C channel4: {}".format(t))
 	except Exception as e:
 		print(" -> [-] Error initialisation channel4 I2C: {}".format(e))
@@ -276,8 +281,9 @@ if __name__ == '__main__':
 	
 	try:
 		I2C_setup(int(I2C_ch_4))
-		time.sleep(TimeInit)
-		t = paj7620u1.check_gesture()
+		time.sleep(TimeInit)	
+		paj7620u5=PAJ7620U2()
+		t = paj7620u5.check_gesture()
 		print("I2C channel5: {}".format(t))
 	except Exception as e:
 		print(" -> [-] Error initialisation channel5 I2C: {}".format(e))
@@ -286,13 +292,37 @@ if __name__ == '__main__':
 	
 	try:
 		I2C_setup(int(I2C_ch_5))
-		time.sleep(TimeInit)
-		t = paj7620u1.check_gesture()
+		time.sleep(TimeInit)	
+		paj7620u6=PAJ7620U2()
+		t = paj7620u6.check_gesture()
 		print("I2C channel6: {}".format(t))
 	except Exception as e:
 		print(" -> [-] Error initialisation channel6 I2C: {}".format(e))
 		sys.exit()
 	print(" -> [+] Channel6 I2C initialsed.")
+	
+	try:
+		I2C_setup(int(I2C_ch_6))
+		time.sleep(TimeInit)	
+		paj7620u7=PAJ7620U2()
+		t = paj7620u7.check_gesture()
+		print("I2C channel7: {}".format(t))
+	except Exception as e:
+		print(" -> [-] Error initialisation channel7 I2C: {}".format(e))
+		sys.exit()
+	print(" -> [+] Channel7 I2C initialsed.")
+	
+	try:
+		I2C_setup(int(I2C_ch_7))
+		time.sleep(TimeInit)	
+		paj7620u8=PAJ7620U2()
+		t = paj7620u8.check_gesture()
+		print("I2C channel8: {}".format(t))
+	except Exception as e:
+		print(" -> [-] Error initialisation channel8 I2C: {}".format(e))
+		sys.exit()
+	print(" -> [+] Channel8 I2C initialsed.")
+	
 	
 	print("\nEnd of the I2C channels initialisation.")
 	print("-----------------------------------------")

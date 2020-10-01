@@ -11,8 +11,11 @@ The Code simply switches from one channel to the other to request the sensors me
 ## Code output
 ![Code output](pictures/I2C_gesture_recon_sensor_Multiplex8ch.jpg)
 
+#### R&D
 Date: 30-09-2020 
+
 Programmer: AK MT
-DRINKOTEC
+
+[DRINKOTEC](https://drinkotec.ch/)
 
 
